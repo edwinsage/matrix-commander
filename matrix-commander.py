@@ -263,6 +263,8 @@ $ # don't use a well formed alias like '#roomAlias1:example.com' as it will
 $ # confuse the server!
 $ # BAD: matrix-commander.py --room-create roomAlias1 '#roomAlias1:example.com'
 $ matrix-commander.py --room-create roomAlias2
+$ # create rooms without an alias (make sure you save the room ID returned!)
+$ matrix-commander.py --room-create !
 $ # create rooms with name and topic
 $ matrix-commander.py --room-create roomAlias3 --name 'Fancy Room' \
     --topic 'All about Matrix'
@@ -379,9 +381,11 @@ optional arguments:
                         Create this room or these rooms. One or multiple room
                         aliases can be specified. The room (or multiple ones)
                         provided in the arguments will be created. The user
-                        must be permitted to create rooms.Combine --room-
-                        create with --name and --topic to add names and topics
-                        to the room(s) to be created.
+                        must be permitted to create rooms. To create a room
+                        without an alias, use '!' as an argument (but make
+                        sure to save the room ID returned by the command!).
+                        Combine --room-create with --name and --topic to add
+                        names and topics to the room(s) to be created.
   --room-join ROOM_JOIN [ROOM_JOIN ...]
                         Join this room or these rooms. One or multiple room
                         aliases can be specified. The room (or multiple ones)
@@ -1680,6 +1684,7 @@ async def create_rooms(client, room_aliases, names, topics):
         )
         for alias in room_aliases:
             alias = alias.replace(r"\!", "!")  # remove possible escape
+            alias = alias.replace(r"!", "")  # Allow rooms without an alias
             # alias is a true alias, not a room id
             # "alias1" will be converted into "#alias1:example.com"
             try:
@@ -3504,7 +3509,9 @@ if __name__ == "__main__":  # noqa: C901 # ignore mccabe if-too-complex
         help="Create this room or these rooms. One or multiple "
         "room aliases can be specified. The room (or multiple "
         "ones) provided in the arguments will be created. "
-        "The user must be permitted to create rooms."
+        "The user must be permitted to create rooms. To create "
+        "a room without an alias, use '!' as an argument (but "
+        "make sure to save the room ID returned by the command!). "
         "Combine --room-create with --name and --topic to add "
         "names and topics to the room(s) to be created.",
     )

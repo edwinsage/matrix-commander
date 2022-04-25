@@ -372,9 +372,11 @@ optional arguments:
                         Create this room or these rooms. One or multiple room
                         aliases can be specified. The room (or multiple ones)
                         provided in the arguments will be created. The user
-                        must be permitted to create rooms.Combine --room-
-                        create with --name and --topic to add names and topics
-                        to the room(s) to be created.
+                        must be permitted to create rooms. To create a room
+                        without an alias, use '!' as an argument (but make
+                        sure to save the room ID returned by the command!).
+                        Combine --room-create with --name and --topic to add
+                        names and topics to the room(s) to be created.
   --room-join ROOM_JOIN [ROOM_JOIN ...]
                         Join this room or these rooms. One or multiple room
                         aliases can be specified. The room (or multiple ones)
