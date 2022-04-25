@@ -443,7 +443,7 @@ optional arguments:
                         Send this message. If not specified, and no input
                         piped in from stdin, then message will be read from
                         stdin, i.e. keyboard. This option can be used multiple
-                        time to send multiple messages. If there is data is
+                        time to send multiple messages. If there is data
                         piped into this program, it will be ignored if this
                         option was specified.
   -i IMAGE [IMAGE ...], --image IMAGE [IMAGE ...]
@@ -3639,10 +3639,9 @@ if __name__ == "__main__":  # noqa: C901 # ignore mccabe if-too-complex
         "input piped in from stdin, then message "
         "will be read from stdin, i.e. keyboard. "
         "This option can be used multiple time to send "
-        "multiple messages. If there is data is piped "
-        "into this program, then first data from the "
-        "pipe is published, then messages from this "
-        "option are published.",
+        "multiple messages. If there is data piped "
+        "into this program, it will be ignored if this "
+        "option was specified.",
     )
     # allow multiple messages , e.g. -i "i1.jpg" "i2.gif"
     # or -m "i1.png" -i "i2.jpeg"
