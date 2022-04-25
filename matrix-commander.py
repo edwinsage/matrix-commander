@@ -1703,7 +1703,7 @@ async def create_rooms(client, room_aliases, names, topics):
             if isinstance(resp, RoomCreateError):
                 logger.error(f"Room_create failed with {resp}")
             else:
-                logger.info(f'Created room "{alias}".')
+                logger.info(f'Created room "{alias}" with ID {resp.room_id}.')
             index = index + 1
     except Exception:
         logger.error("Room creation failed. Sorry.")
