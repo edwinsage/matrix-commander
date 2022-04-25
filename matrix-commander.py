@@ -444,9 +444,8 @@ optional arguments:
                         piped in from stdin, then message will be read from
                         stdin, i.e. keyboard. This option can be used multiple
                         time to send multiple messages. If there is data is
-                        piped into this program, then first data from the pipe
-                        is published, then messages from this option are
-                        published.
+                        piped into this program, it will be ignored if this
+                        option was specified.
   -i IMAGE [IMAGE ...], --image IMAGE [IMAGE ...]
                         Send this image. This option can be used multiple time
                         to send multiple images. First images are send, then
@@ -2396,10 +2395,12 @@ async def process_arguments_and_input(client, rooms):
     rooms : list of room_ids
 
     """
-    messages_from_pipe = get_messages_from_pipe()
-    messages_from_keyboard = get_messages_from_keyboard()
+    messages_from_pipe = []
+    messages_from_keyboard = []
     if not pargs.message:
         messages_from_commandline = []
+        messages_from_pipe = get_messages_from_pipe()
+        messages_from_keyboard = get_messages_from_keyboard()
     else:
         messages_from_commandline = pargs.message
 
