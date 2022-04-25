@@ -436,10 +436,9 @@ optional arguments:
                         Send this message. If not specified, and no input
                         piped in from stdin, then message will be read from
                         stdin, i.e. keyboard. This option can be used multiple
-                        time to send multiple messages. If there is data is
-                        piped into this program, then first data from the pipe
-                        is published, then messages from this option are
-                        published.
+                        time to send multiple messages. If there is data
+                        piped into this program, it will be ignored if this
+                        option was specified.
   -i IMAGE [IMAGE ...], --image IMAGE [IMAGE ...]
                         Send this image. This option can be used multiple time
                         to send multiple images. First images are send, then
